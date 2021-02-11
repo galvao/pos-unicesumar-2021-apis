@@ -1,0 +1,11 @@
+{
+    "description": "Requisição contém erros",
+    "content": {
+        "application/json": {
+            "example": {
+                "mensagem": "Requisição inválida",
+                "erro": "203Y"
+            }
+        }
+    }
+}

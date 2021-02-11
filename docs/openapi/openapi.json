@@ -1,0 +1,303 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "API das Lojas Galvão",
+        "description": "API para acesso aos produtos",
+        "version": "0.1.0",
+        "contact": {
+            "name": "Er Galvão Abbott",
+            "email": "galvao@galvao.eti.br"
+        }
+    },
+    "servers": [
+        {
+            "description": "Servidor de desenvolvimento",
+            "url": "http://localhost"
+        }
+    ],
+    "tags": [
+        { "name": "categorias" },
+        { "name": "produtos" }
+    ],
+    "paths": {
+        "/detalhar-produto/{id}": {
+            "get": {
+                "description": "Detalhar produto",
+                "operationId": "detalhar-produto",
+                "tags": [
+                    "produtos"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detalhes do Produto",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "id": 123,
+                                    "nome": "Geladeira Brastemp Frost Free",
+                                    "preco": 2600
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "400.json"
+                    },
+                    "405": {
+                        "$ref": "405.json"
+                    },
+                    "404": {
+                        "description": "Produto não encontrado",
+                        "content": {
+                            "application/json": {
+                                "example": "Produto de id 2 não encontrado."
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/listar-produtos": {
+            "get": {
+                "description": "Lista produtos",
+                "operationId": "listar-produtos",
+                "tags": [
+                    "produtos"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Produtos listados",
+                        "content": {
+                            "application/json": {
+                                "example": [
+                                    {
+                                        "id": 123,
+                                        "nome": "Geladeira Brastemp Frost Free",
+                                        "preco": 2600
+                                    },
+                                    {
+                                        "id": 198,
+                                        "nome": "Fogão Consul 4 bocas",
+                                        "preco": 800 
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "400.json"
+                    },
+                    "405": {
+                        "$ref": "405.json"
+                    }
+                }
+            }
+        },
+        "/detalhar-categoria/{id}": {
+            "get": {
+                "description": "Detalhes de uma categoria",
+                "operationId": "detalhar-categoria",
+                "tags": [
+                    "categorias"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detalhes de uma categoria",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "id": 2,
+                                    "nome": "Smartphones"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/excluir-categoria/{id}": {
+            "delete": {
+                "description": "Exclui uma categoria",
+                "operationId": "excluir-categoria",
+                "tags": [
+                    "categorias"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Categoria excluída"
+                    },
+                    "400": {
+                        "description": "Problema na requisição",
+                        "content": {
+                            "application/json": {
+                                "example": "Requisição não contém o dado obrigatório 'id'"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Categoria não encontrada",
+                        "content": {
+                            "application/json": {
+                                "example": "Categoria de id 9 não encontrada"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/cadastrar-categoria": {
+            "post": {
+                "description": "Cadastrar categoria",
+                "operationId": "cadastrar-categoria",
+                "tags": [
+                    "categorias"
+                ],
+                "requestBody": {
+                    "description": "Dados da categoria a ser inserida",
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "nome": "Eletrodomésticos"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Cadaastro efetuado",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "id": 9
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Problemas na requisição",
+                        "content": {
+                            "application/json": {
+                                "example": "Erro na requisição."
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/alterar-categoria/{id}": {
+            "patch": {
+                "description": "Alterar categoria",
+                "operationId": "alterar-categoria",
+                "tags": [
+                    "categorias"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Dados da categoria a ser alterada",
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "nome": "Eletrodomésticos"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Alteração efetuada"
+                    },
+                    "400": {
+                        "description": "Problemas na requisição",
+                        "content": {
+                            "application/json": {
+                                "example": "Erro na requisição."
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Categoria não encontrada",
+                        "content": {
+                            "application/json": {
+                                "example": "Categoria de id 2 não encontrada"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/listar-categorias": {
+            "get": {
+                "description": "Lista as categorias de produtos",
+                "operationId": "listar-categorias",
+                "tags": [
+                    "categorias"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Categorias listadas",
+                        "content": {
+                            "application/json": {
+                                "example": [
+                                    {
+                                        "id": 8,
+                                        "nome": "Eletrodomésticos"
+                                    },
+                                    {
+                                        "id": 12,
+                                        "nome": "Smartphones"
+                                    },
+                                    {
+                                        "id": 42,
+                                        "nome": "Informática"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "204": {
+                        "description": "Não há categorias"
+                    }
+                }
+            }
+        }
+    }
+}

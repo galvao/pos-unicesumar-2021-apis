@@ -1,0 +1,10 @@
+{
+    "description": "Verbo de acesso inválido",
+    "content": {
+        "application/json": {
+            "example": {
+                "metodos_validos": ["GET"]
+            }
+        }
+    }
+}
