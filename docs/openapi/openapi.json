@@ -20,165 +20,44 @@
         { "name": "produtos" }
     ],
     "paths": {
-        "/detalhar-produto/{id}": {
+        "/categoria": {
             "get": {
-                "description": "Detalhar produto",
-                "operationId": "detalhar-produto",
+                "description": "Consulta categoria(s)",
+                "operationId": "listar-categorias",
                 "tags": [
-                    "produtos"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
+                    "categorias"
                 ],
                 "responses": {
                     "200": {
-                        "description": "Detalhes do Produto",
-                        "content": {
-                            "application/json": {
-                                "example": {
-                                    "id": 123,
-                                    "nome": "Geladeira Brastemp Frost Free",
-                                    "preco": 2600
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "400.json"
-                    },
-                    "405": {
-                        "$ref": "405.json"
-                    },
-                    "404": {
-                        "description": "Produto não encontrado",
-                        "content": {
-                            "application/json": {
-                                "example": "Produto de id 2 não encontrado."
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/listar-produtos": {
-            "get": {
-                "description": "Lista produtos",
-                "operationId": "listar-produtos",
-                "tags": [
-                    "produtos"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Produtos listados",
+                        "description": "Consulta realizada com sucesso",
                         "content": {
                             "application/json": {
                                 "example": [
                                     {
-                                        "id": 123,
-                                        "nome": "Geladeira Brastemp Frost Free",
-                                        "preco": 2600
-                                    },
-                                    {
-                                        "id": 198,
-                                        "nome": "Fogão Consul 4 bocas",
-                                        "preco": 800 
+                                        "id": 2,
+                                        "nome": "Smartphones"
                                     }
                                 ]
                             }
                         }
                     },
+                    "204": {
+                        "description": "Sem dados para retornar"
+                    },
                     "400": {
                         "$ref": "400.json"
+                    },
+                    "404": {
+                        "$ref": "404.json"
                     },
                     "405": {
                         "$ref": "405.json"
                     }
                 }
-            }
-        },
-        "/detalhar-categoria/{id}": {
-            "get": {
-                "description": "Detalhes de uma categoria",
-                "operationId": "detalhar-categoria",
-                "tags": [
-                    "categorias"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Detalhes de uma categoria",
-                        "content": {
-                            "application/json": {
-                                "example": {
-                                    "id": 2,
-                                    "nome": "Smartphones"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/excluir-categoria/{id}": {
-            "delete": {
-                "description": "Exclui uma categoria",
-                "operationId": "excluir-categoria",
-                "tags": [
-                    "categorias"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "204": {
-                        "description": "Categoria excluída"
-                    },
-                    "400": {
-                        "description": "Problema na requisição",
-                        "content": {
-                            "application/json": {
-                                "example": "Requisição não contém o dado obrigatório 'id'"
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Categoria não encontrada",
-                        "content": {
-                            "application/json": {
-                                "example": "Categoria de id 9 não encontrada"
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/cadastrar-categoria": {
+            },
             "post": {
-                "description": "Cadastrar categoria",
-                "operationId": "cadastrar-categoria",
+                "description": "Cria categoria",
+                "operationId": "criar-categoria",
                 "tags": [
                     "categorias"
                 ],
@@ -194,30 +73,68 @@
                 },
                 "responses": {
                     "201": {
-                        "description": "Cadaastro efetuado",
+                        "description": "Categoria criada com sucesso",
                         "content": {
                             "application/json": {
-                                "example": {
-                                    "id": 9
-                                }
+                                "example": 3
                             }
                         }
                     },
                     "400": {
-                        "description": "Problemas na requisição",
-                        "content": {
-                            "application/json": {
-                                "example": "Erro na requisição."
-                            }
-                        }
+                        "$ref": "400.json"
+                    },
+                    "405": {
+                        "$ref": "405.json"
                     }
                 }
             }
         },
-        "/alterar-categoria/{id}": {
+        "/categoria/{id}": {
+            "get": {
+                "description": "Consulta categoria(s)",
+                "operationId": "visualizar-categoria",
+                "tags": [
+                    "categorias"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Consulta realizada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "id": 2,
+                                    "nome": "Smartphones"
+                                }
+                            }
+                        }
+                    },
+                    "204": {
+                        "description": "Sem dados para retornar"
+                    },
+                    "400": {
+                        "$ref": "400.json"
+                    },
+                    "404": {
+                        "$ref": "404.json"
+                    },
+                    "405": {
+                        "$ref": "405.json"
+                    }
+                }
+            },
             "patch": {
-                "description": "Alterar categoria",
-                "operationId": "alterar-categoria",
+                "description": "Atualiza categoria",
+                "operationId": "atualizar-categoria",
                 "tags": [
                     "categorias"
                 ],
@@ -243,58 +160,47 @@
                 },
                 "responses": {
                     "204": {
-                        "description": "Alteração efetuada"
+                        "description": "Categoria atualizada com sucesso"
                     },
                     "400": {
-                        "description": "Problemas na requisição",
-                        "content": {
-                            "application/json": {
-                                "example": "Erro na requisição."
-                            }
-                        }
+                        "$ref": "400.json"
                     },
                     "404": {
-                        "description": "Categoria não encontrada",
-                        "content": {
-                            "application/json": {
-                                "example": "Categoria de id 2 não encontrada"
-                            }
-                        }
+                        "$ref": "404.json"
+                    },
+                    "405": {
+                        "$ref": "405.json"
                     }
                 }
-            }
-        },
-        "/listar-categorias": {
-            "get": {
-                "description": "Lista as categorias de produtos",
-                "operationId": "listar-categorias",
+            },
+            "delete": {
+                "description": "Exclui categoria",
+                "operationId": "excluir-categoria",
                 "tags": [
                     "categorias"
                 ],
-                "responses": {
-                    "200": {
-                        "description": "Categorias listadas",
-                        "content": {
-                            "application/json": {
-                                "example": [
-                                    {
-                                        "id": 8,
-                                        "nome": "Eletrodomésticos"
-                                    },
-                                    {
-                                        "id": 12,
-                                        "nome": "Smartphones"
-                                    },
-                                    {
-                                        "id": 42,
-                                        "nome": "Informática"
-                                    }
-                                ]
-                            }
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
                         }
-                    },
+                    }
+                ],
+                "responses": {
                     "204": {
-                        "description": "Não há categorias"
+                        "description": "Categoria excluída com sucesso"
+                    },
+                    "400": {
+                        "$ref": "400.json"
+                    },
+                    "404": {
+                        "$ref": "404.json"
+                    },
+                    "405": {
+                        "$ref": "405.json"
                     }
                 }
             }

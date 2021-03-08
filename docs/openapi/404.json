@@ -1,0 +1,8 @@
+{
+    "description": "Entidade não encontrada",
+    "content": {
+        "application/json": {
+            "example": "Entidade não encontrada"
+        }
+    }
+}
