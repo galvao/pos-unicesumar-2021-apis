@@ -17,3 +17,12 @@ Professor Er Galvão Abbott <galvao@galvao.eti.br>
 * [Prism](https://stoplight.io/open-source/prism/)
 * [Redoc](https://github.com/Redocly/redoc)
 * [Redoc-cli](https://github.com/Redocly/redoc/blob/master/cli/README.md)
+
+## Links úteis
+
+### Referências
+* [Laminas\Db\Sql](https://docs.laminas.dev/laminas-db/sql/)
+* [Laminas\Diactoros](https://docs.laminas.dev/laminas-diactoros/)
+
+### Ferramentas
+* [OpenAPI.tools](https://openapi.tools/)
